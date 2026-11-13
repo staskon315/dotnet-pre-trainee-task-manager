@@ -4,7 +4,7 @@ class Program
 {
     static async Task Main()
     {
-        var rep= new TaskRepository();
+        var rep= new TaskRepository("Server=localhost;Database=TaskManagementDb;Integrated Security=True;TrustServerCertificate=True;");
         // var res= rep.GetByIdAsync(3);
         // var res2= rep.GetByIdAsync(99999);
         // var res3= rep.GetByIdAsync(-33333);
@@ -20,7 +20,7 @@ class Program
         // }
         var t= new TaskItem(66,"233","",false);
 
-        Console.WriteLine(await rep.UpdateAsync(t));
+        Console.WriteLine(await rep.DeleteAsync(88888));
 
       
         

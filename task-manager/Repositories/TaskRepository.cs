@@ -55,7 +55,20 @@ public class TaskRepository : ITaskRepository
 
     public async Task<bool> UpdateAsync(TaskItem task)
     {
-        throw new NotImplementedException();
+        await using var connection= new SqlConnection(connectionString);
+        await connection.OpenAsync();
+        const string sql="""
+            UPDATE Tasks SET 
+            Description=@Description,
+            Title=@Title
+            WHERE Id=@Id
+            """;
+        var response= await connection.ExecuteAsync(sql, task);
+        if(response== 0){
+            Console.WriteLine("there is no such task");
+            return false;
+        }
+        return true;
     }
     public async Task<bool> CompleteAsync(int id)
     {

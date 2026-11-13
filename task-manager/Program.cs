@@ -18,10 +18,10 @@ class Program
         //     }
         //     Console.WriteLine( $"{r.Id}: {r.Title} | Completed: {r.IsCompleted}");
         // }
-        Console.WriteLine(await rep.CompleteAsync(1));
-        Console.WriteLine(await rep.CompleteAsync(1));
-        Console.WriteLine(await rep.CompleteAsync(5));
-        Console.WriteLine(await rep.CompleteAsync(999));
+        var t= new TaskItem(66,"233","",false);
+
+        Console.WriteLine(await rep.UpdateAsync(t));
+
       
         
     }

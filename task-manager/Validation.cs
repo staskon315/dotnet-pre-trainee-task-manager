@@ -7,6 +7,7 @@ static class Validation
         while (!int.TryParse(input, out choice))
         {
             Console.WriteLine("Invalid data entered. Please try again. ");
+            Console.Write("Input: ");
             input = Console.ReadLine() ?? "";
         }
 
@@ -19,6 +20,7 @@ static class Validation
         while (string.IsNullOrWhiteSpace(input))
         {
             Console.WriteLine("Invalid data entered. Please try again. ");
+            Console.Write("Input: ");
             input = Console.ReadLine() ?? "";
         }
 
@@ -32,6 +34,7 @@ static class Validation
         Console.WriteLine("2. No");
         while (true)
         {
+            Console.Write("Input: ");
             string? input = Console.ReadLine() ?? "";
             if (input == "1") return true;
             if (input == "2") return false;

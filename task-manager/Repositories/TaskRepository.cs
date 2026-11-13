@@ -11,17 +11,18 @@ public class TaskRepository : ITaskRepository
     }
 
 
-    public async Task<bool> CreateAsync(TaskItem task)
+    public async Task<int> CreateAsync(TaskItem task)
     {
         await using var connection = new SqlConnection(ConnectionString);
         await connection.OpenAsync();
 
         const string sql = """
             INSERT INTO Tasks(Title,Description,IsCompleted,CreatedAt)
+            OUTPUT INSERTED.Id
             VALUES(@Title,@Description,@IsCompleted,@CreatedAt);
             """;
-        int affectedRows = await connection.ExecuteAsync(sql, task);
-        return affectedRows > 0;
+        int newTaskId = await connection.QuerySingleAsync<int>(sql, task);
+        return newTaskId;
 
     }
 
@@ -33,8 +34,8 @@ public class TaskRepository : ITaskRepository
             DELETE FROM Tasks 
             WHERE Id=@Id
             """;
-        var response = await connection.ExecuteAsync(sql, new { id });
-        return response > 0;
+        var affectedRows = await connection.ExecuteAsync(sql, new { id });
+        return affectedRows > 0;
     }
 
     public async Task<IEnumerable<TaskItem>> GetAllAsync()
@@ -74,8 +75,8 @@ public class TaskRepository : ITaskRepository
             Title=@Title
             WHERE Id=@Id
             """;
-        var response = await connection.ExecuteAsync(sql, task);
-        return response > 0;
+        var affectedRows = await connection.ExecuteAsync(sql, task);
+        return affectedRows > 0;
     }
     public async Task<bool> CompleteAsync(int id)
     {
@@ -86,7 +87,7 @@ public class TaskRepository : ITaskRepository
             UPDATE Tasks SET IsCompleted=1
             WHERE Id=@id
             """;
-        var response = await connection.ExecuteAsync(sql, new { id });
-        return response > 0;
+        var affectedRows = await connection.ExecuteAsync(sql, new { id });
+        return affectedRows > 0;
     }
 }

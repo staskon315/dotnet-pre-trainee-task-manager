@@ -1,30 +1,62 @@
-﻿using Microsoft.Data.SqlClient;
-using Dapper;
+﻿
+using System.Reflection.Metadata;
+
 class Program
 {
     static async Task Main()
     {
-        var rep= new TaskRepository("Server=localhost;Database=TaskManagementDb;Integrated Security=True;TrustServerCertificate=True;");
-        // var res= rep.GetByIdAsync(3);
-        // var res2= rep.GetByIdAsync(99999);
-        // var res3= rep.GetByIdAsync(-33333);
-        // var t=await Task.WhenAll(res,res3,res2);
-        // foreach(var r in t)
-        // {
-        //     if (r == null)
-        //     {
-        //         Console.WriteLine(33333333333);
-        //         continue;
-        //     }
-        //     Console.WriteLine( $"{r.Id}: {r.Title} | Completed: {r.IsCompleted}");
-        // }
-        var t= new TaskItem(66,"233","",false);
+        string connectionString= """
+        Server=localhost;
+        Database=TaskManagementDb;
+        Integrated Security=True;
+        TrustServerCertificate=True;
+        """;
+        var taskRepository= new TaskRepository(connectionString);
+        var taskService =new TaskService(taskRepository);
+        bool exit=false;
 
-        Console.WriteLine(await rep.DeleteAsync(88888));
+        while (!exit)
+        {
+            Console.WriteLine("Select one of the following actions(Enter a number):");
+            Console.WriteLine("1. Add task");
+            Console.WriteLine("2. View all tasks");
+            Console.WriteLine("3. Find task by ID");
+            Console.WriteLine("4. Update task");
+            Console.WriteLine("5. Complete task");
+            Console.WriteLine("6. Delete task");
+            Console.WriteLine("7. Exit");
+            Console.Write("Input: ");
+            int choice=Validation.GetValidInputForNumber();
+            switch (choice)
+            {
+                case 1 :
+                    bool taskCreated=await taskService.CreateTask();
+                    if (!taskCreated) Console.WriteLine("Task not created");
+                    break;
+                case 2 :
+                    
+  
+                    break;
+                case 3 :
+                    
+                    break;
+                case 4 :
 
-        
+                    break;
+                case 5 :
 
-      
+                    break;
+                case 6 :
+
+                    break;
+                case 7 :
+
+                    break;
+            }
+
+            
+            
+        }
         
     }
 }

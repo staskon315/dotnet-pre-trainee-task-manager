@@ -1,0 +1,68 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\create-database.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:create-database.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\create-table.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:create-table.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\seed-data.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:seed-data.sql||{B5A506EB-11BE-4782-9A18-21265C2CA0B4}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "seed-data.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (60))",
+              "DocumentMoniker": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\seed-data.sql",
+              "RelativeDocumentMoniker": "seed-data.sql",
+              "ToolTip": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\seed-data.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (60))",
+              "RelativeToolTip": "seed-data.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (60))",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-11-13T07:49:47.89Z",
+              "EditorCaption": " - localhost.TaskManagementDb (NO_DEFENDER\\admin (60))"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "create-table.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (54))",
+              "DocumentMoniker": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\create-table.sql",
+              "RelativeDocumentMoniker": "create-table.sql",
+              "ToolTip": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\create-table.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (54))",
+              "RelativeToolTip": "create-table.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (54))",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-11-13T07:49:46.703Z",
+              "EditorCaption": " - localhost.TaskManagementDb (NO_DEFENDER\\admin (54))"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "create-database.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (51))",
+              "DocumentMoniker": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\create-database.sql",
+              "RelativeDocumentMoniker": "create-database.sql",
+              "ToolTip": "D:\\course\\Git_course\\dotnet-pre-trainee-task-manager\\db\\create-database.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (51))*",
+              "RelativeToolTip": "create-database.sql - localhost.TaskManagementDb (NO_DEFENDER\\admin (51))*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-11-13T07:49:45.569Z",
+              "EditorCaption": " - localhost.TaskManagementDb (NO_DEFENDER\\admin (51))"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

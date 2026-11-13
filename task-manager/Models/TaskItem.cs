@@ -15,5 +15,14 @@ public class TaskItem
         CreatedAt=DateTime.UtcNow;
 
     }
-    public TaskItem(){ }
+    public TaskItem(string title, string description, bool isCompleted)
+    {
+        if (!string.IsNullOrWhiteSpace(title)) Title=title;
+        else throw new ArgumentException("Title cannot be empty", nameof(title));
+        Description=description;
+        IsCompleted=isCompleted;
+        CreatedAt=DateTime.UtcNow;
+
+    }
+    public TaskItem(){}
 }

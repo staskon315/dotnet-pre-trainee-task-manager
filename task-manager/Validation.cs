@@ -29,7 +29,7 @@ static class Validation
 
     public static bool GetValidInputForBool()
     {
-        Console.WriteLine("Select whether the task has been completed or not.");
+        Console.WriteLine("Choose yes or no.");
         Console.WriteLine("1. Yes");
         Console.WriteLine("2. No");
         while (true)

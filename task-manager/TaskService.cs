@@ -13,7 +13,7 @@ class TaskService
         Console.WriteLine($"Enter a description of the task");
         Console.Write("Input: ");
         string? description = Console.ReadLine();
-        Console.WriteLine($"Enter the task status");
+        Console.WriteLine($"Select whether the task has been completed or not.");
         bool isCompleted = Validation.GetValidInputForBool();
         var task = new TaskItem(title, description, isCompleted);
         int? id = await taskRepository.CreateAsync(task);
@@ -64,7 +64,7 @@ class TaskService
         Console.WriteLine("Imput: ");
         int id = Validation.GetValidInputForNumber();
         bool response = await taskRepository.CompleteAsync(id);
-        if (response==false)
+        if (response == false)
         {
             Console.WriteLine("Failed to complete the task");
             return;
@@ -74,5 +74,30 @@ class TaskService
             Console.WriteLine("The task has been successfully completed.");
             return;
         }
+    }
+
+    public async Task DeleteTask()
+    {
+        Console.WriteLine("Enter the ID of the task you want to delete");
+        Console.WriteLine("Imput: ");
+        int id = Validation.GetValidInputForNumber();
+        Console.WriteLine("Are you sure?");
+        Console.WriteLine("Imput: ");
+        bool answer = Validation.GetValidInputForBool();
+        if (answer)
+        {
+            bool response = await taskRepository.DeleteAsync(id);
+            if (response == false)
+            {
+                Console.WriteLine("Failed to delete the task");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Task successfully deleted");
+                return;
+            }
+        }
+
     }
 }

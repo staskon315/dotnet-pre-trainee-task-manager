@@ -33,7 +33,6 @@ class Program
                 case 1:
                     bool taskCreated = await taskService.CreateTask();
                     if (!taskCreated) Console.WriteLine("Task not created");
-
                     break;
                 case 2:
                     await taskService.ShowAll();
@@ -48,7 +47,7 @@ class Program
                     await taskService.CompleteTask();
                     break;
                 case 6:
-
+                    await taskService.DeleteTask();
                     break;
                 case 7:
                     exit = true;

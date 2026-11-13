@@ -31,8 +31,7 @@ class Program
             switch (choice)
             {
                 case 1:
-                    bool taskCreated = await taskService.CreateTask();
-                    if (!taskCreated) Console.WriteLine("Task not created");
+                    await taskService.CreateTask();
                     break;
                 case 2:
                     await taskService.ShowAll();
@@ -41,7 +40,7 @@ class Program
                     await taskService.FindTaskById();
                     break;
                 case 4:
-
+                    await taskService.UpdateTask();
                     break;
                 case 5:
                     await taskService.CompleteTask();

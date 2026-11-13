@@ -1,27 +1,31 @@
 class TaskService
 {
-    private readonly TaskRepository taskRepository;
-    public TaskService(TaskRepository taskRep)
+    private readonly ITaskRepository taskRepository;
+    public TaskService(ITaskRepository taskRep)
     {
         taskRepository = taskRep;
     }
 
-    public async Task<bool> CreateTask()
+    public async Task CreateTask()
     {
-        Console.WriteLine($"Enter the task name");
+        Console.WriteLine("Enter the task name");
         string title = Validation.GetValidInputForString();
         Console.WriteLine($"Enter a description of the task");
         Console.Write("Input: ");
         string? description = Console.ReadLine();
-        Console.WriteLine($"Select whether the task has been completed or not.");
+        Console.WriteLine("Select whether the task has been completed or not.");
         bool isCompleted = Validation.GetValidInputForBool();
         var task = new TaskItem(title, description, isCompleted);
         int? id = await taskRepository.CreateAsync(task);
-        if (id is null) return false;
+        if (id is null)
+        {
+            Console.WriteLine("Task not created");
+            return;
+        }
         else
         {
             Console.WriteLine($"Task created with ID={id}");
-            return true;
+            return ;
         }
     }
 
@@ -99,5 +103,30 @@ class TaskService
             }
         }
 
+    }
+
+    public async Task UpdateTask()
+    {
+        Console.WriteLine("Enter the ID of the task you want to update.");
+        Console.Write("Input: ");
+        int id=Validation.GetValidInputForNumber();
+        Console.WriteLine("Enter the new task name");
+        string title = Validation.GetValidInputForString();
+        Console.WriteLine("Enter a new description of the task");
+        Console.Write("Input: ");
+        string? description = Console.ReadLine();
+        Console.WriteLine("Select whether the task has been completed or not.");
+        bool isCompleted = Validation.GetValidInputForBool();
+        var task = new TaskItem(id,title, description, isCompleted);
+        bool isUpdate = await taskRepository.UpdateAsync(task);
+        if (!isUpdate){
+            Console.WriteLine("The task did not update. Please double-check the values ​​:(");
+            return;
+        }
+        else
+        {
+            Console.WriteLine("The task was successfully updated.");
+            return ;
+        }
     }
 }

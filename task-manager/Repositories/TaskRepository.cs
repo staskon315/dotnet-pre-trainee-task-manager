@@ -72,7 +72,8 @@ public class TaskRepository : ITaskRepository
         const string sql = """
             UPDATE Tasks SET 
             Description=@Description,
-            Title=@Title
+            Title=@Title,
+            IsCompleted=@IsCompleted
             WHERE Id=@Id
             """;
         var affectedRows = await connection.ExecuteAsync(sql, task);

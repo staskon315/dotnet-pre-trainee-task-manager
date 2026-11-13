@@ -33,13 +33,8 @@ public class TaskRepository : ITaskRepository
             DELETE FROM Tasks 
             WHERE Id=@Id
             """;
-        var response = await connection.ExecuteAsync(sql, new{id});
-        if (response == 0)
-        {
-            Console.WriteLine("there is no such task");
-            return false;
-        }
-        return true;
+        var response = await connection.ExecuteAsync(sql, new { id });
+        return response > 0;
     }
 
     public async Task<IEnumerable<TaskItem>> GetAllAsync()
@@ -80,12 +75,7 @@ public class TaskRepository : ITaskRepository
             WHERE Id=@Id
             """;
         var response = await connection.ExecuteAsync(sql, task);
-        if (response == 0)
-        {
-            Console.WriteLine("there is no such task");
-            return false;
-        }
-        return true;
+        return response > 0;
     }
     public async Task<bool> CompleteAsync(int id)
     {

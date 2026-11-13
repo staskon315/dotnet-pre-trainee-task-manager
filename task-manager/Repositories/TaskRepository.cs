@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using Dapper;
+using System.ComponentModel;
 
 public class TaskRepository : ITaskRepository
 {
@@ -12,9 +13,9 @@ public class TaskRepository : ITaskRepository
         await connection.OpenAsync();
 
         const string sql = """
-        INSERT INTO Tasks(Title,Description,IsCompleted,CreatedAt)
-        VALUES(@Title,@Description,@IsCompleted,@CreatedAt);
-        """;
+            INSERT INTO Tasks(Title,Description,IsCompleted,CreatedAt)
+            VALUES(@Title,@Description,@IsCompleted,@CreatedAt);
+            """;
         int affectedRows = await connection.ExecuteAsync(sql, task);
         return affectedRows > 0;
 
@@ -31,16 +32,25 @@ public class TaskRepository : ITaskRepository
         await connection.OpenAsync();
 
         const string sql = """
-        SELECT Id, Title, Description, IsCompleted, CreatedAt
-        FROM Tasks
-        """;
+            SELECT Id, Title, Description, IsCompleted, CreatedAt
+            FROM Tasks
+            """;
         var response = await connection.QueryAsync<TaskItem>(sql);
         return response;
     }
 
-    public Task<TaskItem?> GetByIdAsync(int id)
+    public async Task<TaskItem?> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        await using var connection= new SqlConnection(connectionString);
+        await connection.OpenAsync();
+
+        const string sql="""
+            SELECT Id, Title, Description, IsCompleted, CreatedAt
+            FROM Tasks
+            WHERE Id=@id
+            """;
+        var response= await connection.QuerySingleOrDefaultAsync<TaskItem>(sql, new{id});
+        return response;
     }
 
     public Task<bool> UpdateAsync(TaskItem task)

@@ -15,7 +15,6 @@ public class TaskRepository : ITaskRepository
         INSERT INTO Tasks(Title,Description,IsCompleted,CreatedAt)
         VALUES(@Title,@Description,@IsCompleted,@CreatedAt);
         """;
-
         int affectedRows = await connection.ExecuteAsync(sql, task);
         return affectedRows > 0;
 
@@ -26,9 +25,17 @@ public class TaskRepository : ITaskRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<TaskItem>> GetAllAsync()
+    public async Task<IEnumerable<TaskItem>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        await using var connection = new SqlConnection(connectionString);
+        await connection.OpenAsync();
+
+        const string sql = """
+        SELECT Id, Title, Description, IsCompleted, CreatedAt
+        FROM Tasks
+        """;
+        var response = await connection.QueryAsync<TaskItem>(sql);
+        return response;
     }
 
     public Task<TaskItem?> GetByIdAsync(int id)
@@ -40,7 +47,7 @@ public class TaskRepository : ITaskRepository
     {
         throw new NotImplementedException();
     }
-        public Task<bool> CompleteAsync(int id)
+    public Task<bool> CompleteAsync(int id)
     {
         throw new NotImplementedException();
     }

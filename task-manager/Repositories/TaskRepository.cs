@@ -21,7 +21,7 @@ public class TaskRepository : ITaskRepository
 
     }
 
-    public Task<bool> DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
         throw new NotImplementedException();
     }
@@ -53,12 +53,20 @@ public class TaskRepository : ITaskRepository
         return response;
     }
 
-    public Task<bool> UpdateAsync(TaskItem task)
+    public async Task<bool> UpdateAsync(TaskItem task)
     {
         throw new NotImplementedException();
     }
-    public Task<bool> CompleteAsync(int id)
+    public async Task<bool> CompleteAsync(int id)
     {
-        throw new NotImplementedException();
+        await using var connection= new SqlConnection(connectionString);
+        await connection.OpenAsync();
+
+        const string sql="""
+            UPDATE Tasks SET IsCompleted=1
+            WHERE Id=@id
+            """;
+        var response= await connection.ExecuteAsync(sql, new{id});
+        return response>0;
     }
 }

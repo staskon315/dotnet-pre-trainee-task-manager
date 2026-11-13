@@ -33,13 +33,13 @@ class Program
                 case 1:
                     bool taskCreated = await taskService.CreateTask();
                     if (!taskCreated) Console.WriteLine("Task not created");
-                    
+
                     break;
                 case 2:
                     await taskService.ShowAll();
                     break;
                 case 3:
-
+                    await taskService.FindTaskById();
                     break;
                 case 4:
 
@@ -51,7 +51,8 @@ class Program
 
                     break;
                 case 7:
-
+                    exit = true;
+                    Console.WriteLine("Program completion");
                     break;
                 default:
                     Console.WriteLine("Invalid data entered. Please try again. ");

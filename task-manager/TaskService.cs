@@ -5,6 +5,7 @@ class TaskService
     {
         taskRepository = taskRep;
     }
+
     public async Task<bool> CreateTask()
     {
         Console.WriteLine($"Enter the task name");
@@ -23,6 +24,7 @@ class TaskService
             return true;
         }
     }
+
     public async Task ShowAll()
     {
         var tasks = await taskRepository.GetAllAsync();
@@ -33,8 +35,27 @@ class TaskService
         }
         else
         {
-            foreach (var task in tasks) 
+            foreach (var task in tasks)
                 Console.WriteLine($"{task.Id}: {task.Title} | Completed: {task.IsCompleted}");
         }
+    }
+    
+    public async Task FindTaskById()
+    {
+        Console.WriteLine("Enter the ID of the task you are interested in");
+        Console.WriteLine("Imput: ");
+        int id = Validation.GetValidInputForNumber();
+        TaskItem? task = await taskRepository.GetByIdAsync(id);
+        if (task is null)
+        {
+            Console.WriteLine("Task not found");
+            return;
+        }
+        else
+        {
+            Console.WriteLine($"{task.Id}: {task.Title} |Description: {task.Description} |Completed: {task.IsCompleted} |Created at: {task.CreatedAt}");
+            return;
+        }
+
     }
 }

@@ -45,7 +45,7 @@ class Program
 
                     break;
                 case 5:
-
+                    await taskService.CompleteTask();
                     break;
                 case 6:
 

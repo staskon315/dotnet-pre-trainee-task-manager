@@ -39,7 +39,7 @@ class TaskService
                 Console.WriteLine($"{task.Id}: {task.Title} | Completed: {task.IsCompleted}");
         }
     }
-    
+
     public async Task FindTaskById()
     {
         Console.WriteLine("Enter the ID of the task you are interested in");
@@ -56,6 +56,23 @@ class TaskService
             Console.WriteLine($"{task.Id}: {task.Title} |Description: {task.Description} |Completed: {task.IsCompleted} |Created at: {task.CreatedAt}");
             return;
         }
+    }
 
+    public async Task CompleteTask()
+    {
+        Console.WriteLine("Enter the ID of the task you have completed");
+        Console.WriteLine("Imput: ");
+        int id = Validation.GetValidInputForNumber();
+        bool response = await taskRepository.CompleteAsync(id);
+        if (response==false)
+        {
+            Console.WriteLine("Failed to complete the task");
+            return;
+        }
+        else
+        {
+            Console.WriteLine("The task has been successfully completed.");
+            return;
+        }
     }
 }
